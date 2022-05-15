@@ -4,17 +4,23 @@
  */
 package Main;
 
+import Clases.ManejadorUsuarios;
+import java.io.FileNotFoundException;
+
 /**
  *
  * @author HOME
  */
 public class Main {
-
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        System.out.println("Hola ANTHOOOOOOOOOOOOOOOONyyyy");
+
+    public static void main(String[] args) throws FileNotFoundException {
+        String id = "1c";
+        String clave = "abc";
+        ManejadorUsuarios usarios = new ManejadorUsuarios();
+        usarios.comprobarRegistro(id, clave);
+
     }
-    
 }
