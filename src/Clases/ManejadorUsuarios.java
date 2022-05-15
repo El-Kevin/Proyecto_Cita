@@ -5,9 +5,13 @@
 package Clases;
 
 import static Clases.ManejadorUsuarios.readField;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import javax.swing.filechooser.FileSystemView;
 import org.json.JSONArray;
@@ -25,7 +29,7 @@ public class ManejadorUsuarios {
     
     private static String pathUsuarios = 
             FileSystemView.getFileSystemView().getDefaultDirectory().getPath() 
-            + "\\Usuarios\\data.json";
+            + "\\Usuarioss\\data.json";  
     
      public static ArrayList<Paciente> readField() throws FileNotFoundException{
         // ScoreData is the array where we can read the core from file
@@ -53,15 +57,16 @@ public class ManejadorUsuarios {
          }
          return dataList;
     }
-    public void comprobarRegistro(String Usuario, String password) throws FileNotFoundException{
+    public boolean comprobarRegistro(String Usuario, String password) throws FileNotFoundException{
         ArrayList<Paciente> listaPaciente = new ArrayList<Paciente>();
         listaPaciente = readField();
         
         for (Paciente User : listaPaciente){
             if(User.getNumeroCedula().equalsIgnoreCase(Usuario) && User.getClave().equalsIgnoreCase(password) ){  
-                System.out.print("Ha ingresado con exito");
-                break;
+                return true;
             }
         }
+        return false;
     }
+
 }

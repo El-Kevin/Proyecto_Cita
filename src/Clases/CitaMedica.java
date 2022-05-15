@@ -4,7 +4,7 @@ package Clases;
  *
  * @author HOME
  */
-public class CitaMedica {
+public abstract class CitaMedica {
     private String Especialidad;
     private String FechaEmision;
     private String Nombremedico;
