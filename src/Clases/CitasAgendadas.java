@@ -4,6 +4,9 @@
  */
 package Clases;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
 /**
@@ -11,22 +14,32 @@ import java.util.ArrayList;
  * @author User
  */
 public class CitasAgendadas extends CitaMedica {
+
     private int numeroCitasAgendadas;
-    private ArrayList <CitaMedica> citasAgendadas;
+    private ArrayList<CitaMedica> citasAgendadas;
+
+    public CitasAgendadas(String especialidad, String fechaEmision, String nombreMedico, String fechaCita, String codigoCita, boolean disponibilidad) {
+        super(especialidad, fechaEmision, nombreMedico, fechaCita, codigoCita, false);
+    }
 
     @Override
     public int calcularDiasFaltantes() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String fechaF = super.getFechaCita();
+        final LocalDate fechaDestino = LocalDate.parse(fechaF, formatter);
+        final LocalDate fechaOrigen = LocalDate.now();
+        final long res = ChronoUnit.DAYS.between(fechaOrigen, fechaDestino);
+
+        int dias = (int) res;
+        return dias;
+
     }
 
-    public CitasAgendadas() {
+    public void consultarCitasAgendadas() {
+
     }
-    
-    public void consultarCitasAgendadas(){
-        
-    }
-    
-    public void visualizarCitasAgendadas(){
-        
+
+    public void visualizarCitasAgendadas() {
+
     }
 }
